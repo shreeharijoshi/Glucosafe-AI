@@ -1,0 +1,8 @@
+fastapi
+pydantic
+SQLAlchemy
+pymysql
+sqlacodegen
+uvicorn
+pytest
+pytest-asyncio
