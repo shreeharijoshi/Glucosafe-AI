@@ -2,10 +2,11 @@
 
 from database import SessionLocal
 from sqlalchemy.orm import Session
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, Query, HTTPException
 from starlette import status
 from typing import Annotated
 from models import NutrientI, NutrientS
+from sqlalchemy import or_
 
 router = APIRouter(
     prefix="/carb_counter",
@@ -20,6 +21,32 @@ def get_db():
         db.close()
 
 db_dependency = Annotated[Session, Depends(get_db)]
+
+@router.get("/autocomplete")
+def suggest_item(db : db_dependency, food_name : str = Query(minlength=3)):
+    search_term = food_name.casefold()
+    response = set()
+
+    nutrient_s_results = db.query(NutrientS).filter(
+        or_(
+            NutrientS.food_name_western.contains(search_term),
+            NutrientS.food_name_indian.contains(search_term)
+        )
+    ).all()
+
+    nutrient_i_results = db.query(NutrientI).filter(NutrientI.Food_Name.contains(search_term)).all()
+
+    for item in nutrient_s_results:
+        if item.food_name_western and search_term in item.food_name_western.casefold():
+            response.add(item.food_name_western)
+        if item.food_name_indian and search_term in item.food_name_indian.casefold():
+            response.add(item.food_name_indian)
+        
+    for item in nutrient_i_results:
+        if item.Food_Name and search_term in item.Food_Name.casefold():
+            response.add(item.Food_Name)
+        
+    return list(response)
 
 @router.get("/{food_name}")
 def get_carb_value(food_name : str, db : db_dependency):
