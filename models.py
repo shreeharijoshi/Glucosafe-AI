@@ -1,11 +1,10 @@
-### Classes for tables in db ###
-
 from typing import Optional
 import decimal
 
 from sqlalchemy import BigInteger, Double, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 from database import Base
+
 
 class NutrientI(Base):
     __tablename__ = 'nutrient_i'
@@ -26,8 +25,8 @@ class NutrientS(Base):
     __tablename__ = 'nutrient_s'
 
     food_code: Mapped[str] = mapped_column(String(100), primary_key=True)
-    food_name: Mapped[Optional[str]] = mapped_column(Text)
-    primarysource: Mapped[Optional[str]] = mapped_column(Text)
+    food_name_western: Mapped[Optional[str]] = mapped_column(Text)
+    food_name_indian: Mapped[Optional[str]] = mapped_column(Text)
     energy_kj: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     energy_kcal: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     carb_g: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
@@ -47,16 +46,16 @@ class NutrientS(Base):
     iron_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     copper_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     selenium_ug: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
-    chromium_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
+    chromium_mg: Mapped[Optional[int]] = mapped_column(Integer)
     manganese_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     molybdenum_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     zinc_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
-    vita_ug: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
+    vita_ug: Mapped[Optional[int]] = mapped_column(Integer)
     vite_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     vitd2_ug: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
-    vitd3_ug: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
+    vitd3_ug: Mapped[Optional[int]] = mapped_column(Integer)
     vitk1_ug: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
-    vitk2_ug: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
+    vitk2_ug: Mapped[Optional[int]] = mapped_column(Integer)
     folate_ug: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     vitb1_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     vitb2_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
@@ -78,7 +77,7 @@ class NutrientS(Base):
     unit_serving_sfa_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     unit_serving_mufa_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     unit_serving_pufa_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
-    unit_serving_cholesterol_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
+    unit_serving_cholesterol_mg: Mapped[Optional[int]] = mapped_column(Integer)
     unit_serving_calcium_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     unit_serving_phosphorus_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     unit_serving_magnesium_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
@@ -91,12 +90,12 @@ class NutrientS(Base):
     unit_serving_manganese_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     unit_serving_molybdenum_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     unit_serving_zinc_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
-    unit_serving_vita_ug: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
+    unit_serving_vita_ug: Mapped[Optional[int]] = mapped_column(Integer)
     unit_serving_vite_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     unit_serving_vitd2_ug: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
-    unit_serving_vitd3_ug: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
+    unit_serving_vitd3_ug: Mapped[Optional[int]] = mapped_column(Integer)
     unit_serving_vitk1_ug: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
-    unit_serving_vitk2_ug: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
+    unit_serving_vitk2_ug: Mapped[Optional[int]] = mapped_column(Integer)
     unit_serving_folate_ug: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     unit_serving_vitb1_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
     unit_serving_vitb2_mg: Mapped[Optional[decimal.Decimal]] = mapped_column(Double(asdecimal=True))
