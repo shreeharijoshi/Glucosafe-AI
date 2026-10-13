@@ -2,7 +2,7 @@ fastapi
 pydantic
 SQLAlchemy
 pymysql
-sqlacodegen
+rapidfuzz
 uvicorn
 pytest
 pytest-asyncio
