@@ -1,0 +1,38 @@
+{
+  "status": {
+    "dataset_selection": "pending",
+    "model_status": "not_trained",
+    "coverage_policy": "provisional"
+  },
+  "target": {
+    "threshold_mg_dl": 70,
+    "horizon_minutes": 30,
+    "interval": "(t, t + 30 minutes]",
+    "future_observation_must_be_strictly_after_prediction_time": true,
+    "observation_at_exact_horizon_is_included": true,
+    "maximum_future_path_gap_minutes": 10,
+    "late_coverage_reading_may_help_assess_continuity": true,
+    "late_coverage_reading_may_determine_label": false
+  },
+  "reproducibility": {
+    "random_seed": 42
+  },
+  "evaluation": {
+    "group_by": "participant",
+    "participant_independent_evaluation": true,
+    "row_level_random_split": false
+  },
+  "models": {
+    "model_a_glucose_only": [
+      "current_glucose",
+      "recent_glucose_history",
+      "valid_historical_glucose_trends"
+    ],
+    "model_b_glucose_plus_current_meal_carbohydrates": [
+      "current_glucose",
+      "recent_glucose_history",
+      "valid_historical_glucose_trends",
+      "current_meal_carbohydrates"
+    ]
+  }
+}
