@@ -1,0 +1,42 @@
+{
+  "model_type": "XGBClassifier",
+  "xgboost_version": "3.4.1",
+  "feature_columns": [
+    "current_glucose_mg_dl",
+    "current_glucose_age_minutes",
+    "glucose_5min_before_mg_dl",
+    "glucose_10min_before_mg_dl",
+    "glucose_15min_before_mg_dl",
+    "glucose_change_5min_mg_dl",
+    "glucose_change_10min_mg_dl",
+    "glucose_change_15min_mg_dl"
+  ],
+  "threshold": 0.5,
+  "preprocessing": "none",
+  "missing_value_handling": {
+    "training": "Rows missing target or any model feature are excluded.",
+    "inference": "Missing, non-numeric, and non-finite feature values are rejected."
+  },
+  "target_definition": {
+    "threshold_mg_dl": 70,
+    "horizon_minutes": 30,
+    "interval": "(t, t + 30 minutes]"
+  },
+  "training": {
+    "eligible_observations": 242584,
+    "participants": 16,
+    "positive_targets": 8804,
+    "negative_targets": 233780
+  },
+  "model_parameters": {
+    "objective": "binary:logistic",
+    "n_estimators": 200,
+    "max_depth": 4,
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "eval_metric": "logloss",
+    "random_state": 42,
+    "n_jobs": -1
+  }
+}
